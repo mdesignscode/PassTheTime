@@ -6,15 +6,18 @@ const config: Config = {
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
+  darkMode: 'class',
   theme: {
     extend: {
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-      },
-    },
-  },
-  plugins: [],
+      colors: {
+        'dark': '#161415',
+        'light': "#fefefe",
+        'primary': '#f8e6cb',
+        'secondary': '#dccaa8',
+        'accent-primary': '#e984a2',
+        'accent-secondary': '#b9cc95',
+      }
+    }
+  }
 }
 export default config
