@@ -18,3 +18,18 @@ CREATE TABLE "Nutritions" (
     "carbohydrates" INTEGER NOT NULL,
     "protein" INTEGER NOT NULL
 );
+
+-- CreateTable
+CREATE TABLE "Author" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "name" TEXT NOT NULL
+);
+
+-- CreateTable
+CREATE TABLE "Poem" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "title" TEXT NOT NULL,
+    "lines" TEXT NOT NULL,
+    "authorId" INTEGER,
+    CONSTRAINT "Poem_authorId_fkey" FOREIGN KEY ("authorId") REFERENCES "Author" ("id") ON DELETE SET NULL ON UPDATE CASCADE
+);

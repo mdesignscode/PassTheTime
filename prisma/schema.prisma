@@ -30,3 +30,17 @@ model Nutritions {
 
   Fruit Fruit[]
 }
+
+model Author {
+  id    Int    @id @default(autoincrement())
+  name  String
+  poems Poem[]
+}
+
+model Poem {
+  id       Int @id @default(autoincrement())
+  title    String
+  lines    String
+  Author   Author?  @relation(fields: [authorId], references: [id])
+  authorId Int?
+}
