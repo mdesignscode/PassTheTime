@@ -1,6 +1,14 @@
+"use client"
 import { useEffect, useState } from "react";
 
-export default function useWindowWidth() {
+/**
+ * Detects the device type based on window width
+ * @date 1/8/2024 - 1:09:57 PM
+ *
+ * @export
+ * @returns {boolean}
+ */
+export default function useDetectDeviceType(): boolean {
   const [windowWidth, detectWidth] = useState(window.innerWidth);
   const detectSize = () => {
     detectWidth(window.innerWidth);
@@ -12,5 +20,5 @@ export default function useWindowWidth() {
     };
   }, [windowWidth]);
 
-  return windowWidth < 769 // mobile
+  return windowWidth < 768 // mobile
 }

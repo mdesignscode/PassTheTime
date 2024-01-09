@@ -28,6 +28,9 @@
       ],
       "@/context/*": [
         "app/context/*"
+      ],
+      "@/hooks/*": [
+        "app/hooks/*"
       ]
     }
   },

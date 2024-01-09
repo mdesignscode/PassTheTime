@@ -1,18 +1,28 @@
 "use client";
 
 import storageAvailable from "@/Components/localStorageDetection";
-import { Dispatch, SetStateAction, createContext, useEffect, useState } from "react";
+import {
+  Dispatch,
+  SetStateAction,
+  createContext,
+  useEffect,
+  useState,
+} from "react";
 
 export interface IGlobalContext {
   storageIsAvailable: boolean;
   setPrefersDarkMode: Dispatch<SetStateAction<boolean>>;
   prefersDarkMode: boolean;
+  setShowLightbox: Dispatch<SetStateAction<boolean>>;
+  showLightbox: boolean;
 }
 
 export const initialGlobalContext: IGlobalContext = {
   storageIsAvailable: false,
   setPrefersDarkMode: () => {},
-  prefersDarkMode: false
+  prefersDarkMode: false,
+  setShowLightbox: () => {},
+  showLightbox: false,
 };
 
 export const GlobalContext =
@@ -23,9 +33,10 @@ export function GlobalProvider({ children }: { children: React.ReactNode }) {
   // app uses localStorage
   const [storageIsAvailable, setStorageIsAvailable] = useState(false);
   const [prefersDarkMode, setPrefersDarkMode] = useState(false);
+  const [showLightbox, setShowLightbox] = useState(false);
 
   useEffect(() => {
-    const localStorageAvailable = storageAvailable()
+    const localStorageAvailable = storageAvailable();
     // detect storage feature
     setStorageIsAvailable(localStorageAvailable);
 
@@ -36,7 +47,9 @@ export function GlobalProvider({ children }: { children: React.ReactNode }) {
         window.matchMedia &&
         window.matchMedia("(prefers-color-scheme: dark)").matches,
       // get stored color mode
-      preference = localStorageAvailable ? localStorage.getItem("colorMode") : "light";
+      preference = localStorageAvailable
+        ? localStorage.getItem("colorMode")
+        : "light";
 
     // set current color mode
     let colorMode = preference
@@ -62,8 +75,6 @@ export function GlobalProvider({ children }: { children: React.ReactNode }) {
         htmlElement.style.setProperty("--y", event.clientY + "px");
       }
     });
-
-    console.log("Doc ready...", localStorageAvailable, preference)
   }, []);
 
   // store object
@@ -71,6 +82,8 @@ export function GlobalProvider({ children }: { children: React.ReactNode }) {
     storageIsAvailable,
     prefersDarkMode,
     setPrefersDarkMode,
+    showLightbox,
+    setShowLightbox
   };
 
   return (

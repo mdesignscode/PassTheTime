@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/Components/Navbar";
 import { GlobalProvider } from "./context/globalContext";
+import Overlay from "./Components/Overlay";
 
 export const metadata: Metadata = {
   title: "Pass The Time",
@@ -14,24 +15,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className="dark:from-light dark:to-light text-dark bg-gradient-to-r from-secondary to-accent-secondary dark:bg-gradient-to-b overflow-y-hidden h-full">
+    <html className="h-screen" lang="en">
+      <body className="dark:from-secondary dark:to-secondary text-dark bg-gradient-to-r from-secondary to-accent-secondary dark:bg-gradient-to-b overflow-y-hidden h-full">
         <GlobalProvider>
           <Navbar />
 
           {/* dark mode cursor spotlight */}
           <div id="spotlight" className="hidden dark:block"></div>
 
-          {/* lightbox overlay */}
-          <div
-            id="overlay"
-            style={{ opacity: 0 }}
-            className="h-screen w-screen bg-dark absolute z-10 hidden"
-          ></div>
+          <Overlay />
 
-          <main role="main" className="h-full">
-            {children}
-          </main>
+          {children}
         </GlobalProvider>
       </body>
     </html>
